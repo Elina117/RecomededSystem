@@ -1,59 +1,59 @@
-## Описание выполненной работы
+## Description of the Completed Work
 
-В рамках выполненного задания, я разработала рекомендательную систему для социальной сети студентов Karpov Courses. Эта система генерирует персонализированные ленты для пользователей, учитывая их индивидуальные характеристики, прошлую активность и содержимое постов.
+As part of the assignment, I developed a recommendation system for the student social network. This system generates personalized feeds for users, taking into account their individual characteristics, past activity, and the content of the posts.
 
-### 1. Сбор данных
-В качестве исходных данных использовались таблицы, подготовленные командой курса, которые включают информацию о пользователях, их профилях, сообществах, постах и активности пользователей (например, лайки и просмотры постов).
+### 1. Data Collection
+The raw data used included tables containing information about users, their profiles, communities, posts, and user activity (such as likes and post views).
 
-### 2. Понимание предпочтений пользователей
-Для каждого пользователя система анализирует его прошлую активность (например, какие посты он лайкал, какие сообщества он посещал) и использует эти данные для формирования рекомендаций. Это позволяет учитывать интересы пользователя и повышать релевантность постов в его ленте.
+### 2. Understanding User Preferences
+For each user, the system analyzes their past activity (e.g., posts they liked, communities they visited) and uses this data to generate recommendations. This allows the system to account for the user’s interests and enhance the relevance of the posts in their feed.
 
-### 3. Разработка модели рекомендаций
-Я построила систему рекомендаций, которая учитывает следующие параметры:
-- **Профиль пользователя**: данные о пользователе (например, возраст, интересы, активность) влияют на то, какие посты ему будут рекомендованы.
-- **Активность пользователя**: просмотренные посты, поставленные лайки, участвующие сообщества — все это используется для вычисления предпочтений.
-- **Содержание постов**: каждый пост также имеет определенные характеристики (например, теги, сообщества), которые используются для сопоставления с интересами пользователей.
+### 3. Recommendation Model Development
+I built a recommendation system that considers the following parameters:
+- **User profile**: Information about the user (such as age, interests, activity) affects which posts are recommended.
+- **User activity**: Viewed posts, likes, and community participation are used to calculate preferences.
+- **Post content**: Each post also has certain features (such as tags, communities) that are used to match with users' interests.
 
-### 4. Реализация функционала
-Я реализовала сервис, который для каждого пользователя динамически генерирует ленту с постами, которые имеют наибольшую вероятность понравиться на основе вышеупомянутых факторов. Система обновляет ленту в реальном времени, обеспечивая актуальные рекомендации.
+### 4. Implementation
+I implemented a service that dynamically generates a feed for each user, showing posts most likely to appeal to them based on the factors mentioned above. The system updates the feed in real-time to provide current recommendations.
 
-### 5. Технологическая реализация
-Для хранения данных использовалась PostgreSQL база данных, где хранятся все данные о пользователях, постах и их активности. Я применяла методы извлечения, обработки и анализа данных для построения эффективной системы рекомендаций.
+### 5. Technological Implementation
+PostgreSQL was used for data storage, where all data about users, posts, and their activity is stored. I applied data extraction, processing, and analysis methods to build an effective recommendation system.
 
-### 6. Персонализация ленты
-Система подбирает посты, которые не являются случайными, а точечно ориентированы на предпочтения конкретного пользователя, обеспечивая высокую релевантность рекомендаций и улучшая пользовательский опыт на платформе.
+### 6. Personalizing the Feed
+The system selects posts that are not random, but specifically targeted to each user's preferences, ensuring high relevance of the recommendations and improving the user experience on the platform.
 
-### Ход работы
+### Work Process
 
-#### 1. **Анализ трех таблиц**
-Для начала я проанализировала три основные таблицы базы данных:
-- **Таблица пользователей**: Содержит информацию о каждом пользователе (например, имя, возраст, интересы).
-- **Таблица постов**: Содержит информацию о постах, опубликованных в сообществе, включая текст поста, метки и другие характеристики.
-- **Таблица активности пользователей**: Включает данные о действиях пользователей (например, лайки, просмотры постов, участие в сообществах).
+#### 1. **Analysis of Three Tables**
+First, I analyzed three main tables in the database:
+- **User table**: Contains information about each user (such as name, age, interests).
+- **Post table**: Contains information about posts published in communities, including the text of the post, tags, and other characteristics.
+- **User activity table**: Includes data on user actions (such as likes, post views, community participation).
 
-#### 2. **Извлечение новых признаков**
-Для улучшения модели были извлечены новые признаки с помощью различных методов:
-- **TF-IDF**: Использована для извлечения признаков из текста постов и выделения значимых слов, которые могут быть полезными для рекомендаций.
-- **One-Hot Encoding (OHE)**: Применен для кодирования категориальных признаков, таких как теги и категории сообществ, чтобы модель могла учитывать их в обучении.
-- **Mean Target Encoding (MTE)**: Применен для кодирования категориальных признаков с помощью среднего целевого значения, что помогает улучшить точность модели.
-- **Label Encoding**: Использовано для кодирования категориальных признаков, таких как идентификаторы пользователей и постов, в числовую форму.
+#### 2. **Feature Extraction**
+To improve the model, I extracted new features using various methods:
+- **TF-IDF**: Used to extract features from post texts and highlight significant words that could be useful for recommendations.
+- **One-Hot Encoding (OHE)**: Applied to encode categorical features, such as tags and community categories, so that the model could use them in training.
+- **Mean Target Encoding (MTE)**: Used to encode categorical features by their mean target value, helping to improve model accuracy.
+- **Label Encoding**: Used to encode categorical features, such as user and post IDs, into numerical form.
 
-#### 3. **Использование валидации, стандартизации и балансировки классов**
-- **Валидация**: Для оценки модели использовалась кросс-валидация, что позволяет уменьшить вероятность переобучения и повысить общую точность модели.
-- **Стандартизация**: Для улучшения результатов обучения была применена стандартизация числовых признаков, что позволяет моделям лучше работать с различными шкалами данных.
-- **Балансировка классов**: Для улучшения работы с несбалансированными данными (например, когда некоторые посты получают намного больше лайков, чем другие) были использованы методы балансировки классов, такие как oversampling и undersampling.
+#### 3. **Use of Validation, Standardization, and Class Balancing**
+- **Validation**: Cross-validation was used to evaluate the model, reducing the risk of overfitting and improving the model’s overall accuracy.
+- **Standardization**: Standardization of numerical features was applied to improve model performance, enabling the models to work better with different data scales.
+- **Class balancing**: Methods like oversampling and undersampling were used to handle imbalanced data, especially when certain posts received significantly more likes than others.
 
-#### 4. **Обучение моделей**
-Я использовала несколько моделей машинного обучения для построения рекомендательной системы:
-- **CatBoost**: Модель градиентного бустинга, хорошо работающая с категориальными признаками, использовалась для предсказания вероятности того, что пользователь поставит лайк тому или иному посту.
-- **Random Forest**: Метод случайного леса был использован для классификации и построения предсказаний на основе различных признаков. Это оказалась лучшая модель для данной задачи, показавшая отличные результаты по точности рекомендаций.
-- **Logistic Regression**: Логистическая регрессия использовалась для бинарной классификации, чтобы предсказать, поставит ли пользователь лайк на пост.
-- **XGBoost**: Еще один мощный алгоритм градиентного бустинга, примененный для оптимизации производительности модели.
+#### 4. **Model Training**
+I used several machine learning models to build the recommendation system:
+- **CatBoost**: A gradient boosting model that works well with categorical features was used to predict the likelihood of a user liking a particular post.
+- **Random Forest**: A random forest model was used for classification and generating predictions based on various features.
+- **Logistic Regression**: Logistic regression was used for binary classification to predict whether a user will like a post.
+- **XGBoost**: Another powerful gradient boosting algorithm was applied to optimize model performance.
 
-#### 5. **Оценка моделей с использованием HitRate@5**
-Для оценки качества работы рекомендательной системы использовалась метрика **HitRate@5**. Эта метрика измеряет, сколько раз из 5 рекомендованных постов хотя бы один пост будет выбран пользователем (например, получит лайк). Такая метрика помогает оценить точность рекомендаций в условиях реального применения, где важно не просто рекомендовать лучший пост, а предложить несколько постов, среди которых пользователь будет заинтересован в одном или нескольких.
+#### 5. **Model Evaluation with HitRate@5**
+To evaluate the performance of the recommendation system, I used the **HitRate@5** metric. This metric measures how often at least one of the five recommended posts is selected by the user (e.g., receives a like). This metric helps assess the accuracy of recommendations in real-world conditions, where it's important not only to recommend the best post but also to offer several posts among which the user will be interested in one or more.
 
-По итогам, лучшая модель для данной задачи — **Random Forest**, которая достигла **HitRate@5 = 0.521**. Это означает, что в 52.1% случаев хотя бы один из пяти рекомендованных постов будет выбран пользователем. 
+As a result, the best model for this task was **Random Forest**, which achieved **HitRate@5 = 0.521**. This means that in 52.1% of cases, at least one of the five recommended posts will be selected by the user.
 
-### Результат
-Теперь каждый пользователь социальной сети получает персонализированную ленту, которая состоит из постов, наиболее подходящих для его интересов и предыдущей активности. Это повышает вовлеченность пользователей и улучшает качество их взаимодействия с платформой.
+### Result
+Now, each user of the social network receives a personalized feed consisting of posts most suitable for their interests and past activity. This enhances user engagement and improves the quality of their interaction with the platform.
