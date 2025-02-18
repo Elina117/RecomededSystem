@@ -1,6 +1,6 @@
-## Description of the Completed Work
+### Updated Description of the Completed Work
 
-As part of the assignment, I developed a recommendation system for the student social network. This system generates personalized feeds for users, taking into account their individual characteristics, past activity, and the content of the posts.
+As part of the assignment, I developed a recommendation system for a student social network. This system generates personalized feeds for users, taking into account their individual characteristics, past activity, and post content.
 
 ### 1. Data Collection
 The raw data used included tables containing information about users, their profiles, communities, posts, and user activity (such as likes and post views).
@@ -8,19 +8,13 @@ The raw data used included tables containing information about users, their prof
 ### 2. Understanding User Preferences
 For each user, the system analyzes their past activity (e.g., posts they liked, communities they visited) and uses this data to generate recommendations. This allows the system to account for the user’s interests and enhance the relevance of the posts in their feed.
 
-### 3. Recommendation Model Development
-I built a recommendation system that considers the following parameters:
-- **User profile**: Information about the user (such as age, interests, activity) affects which posts are recommended.
-- **User activity**: Viewed posts, likes, and community participation are used to calculate preferences.
-- **Post content**: Each post also has certain features (such as tags, communities) that are used to match with users' interests.
-
-### 4. Implementation
+### 3. Implementation
 I implemented a service that dynamically generates a feed for each user, showing posts most likely to appeal to them based on the factors mentioned above. The system updates the feed in real-time to provide current recommendations.
 
-### 5. Technological Implementation
+### 4. Technological Implementation
 PostgreSQL was used for data storage, where all data about users, posts, and their activity is stored. I applied data extraction, processing, and analysis methods to build an effective recommendation system.
 
-### 6. Personalizing the Feed
+### 5. Personalizing the Feed
 The system selects posts that are not random, but specifically targeted to each user's preferences, ensuring high relevance of the recommendations and improving the user experience on the platform.
 
 ### Work Process
@@ -53,7 +47,12 @@ I used several machine learning models to build the recommendation system:
 #### 5. **Model Evaluation with HitRate@5**
 To evaluate the performance of the recommendation system, I used the **HitRate@5** metric. This metric measures how often at least one of the five recommended posts is selected by the user (e.g., receives a like). This metric helps assess the accuracy of recommendations in real-world conditions, where it's important not only to recommend the best post but also to offer several posts among which the user will be interested in one or more.
 
-As a result, the best model for this task was **Random Forest**, which achieved **HitRate@5 = 0.521**. This means that in 52.1% of cases, at least one of the five recommended posts will be selected by the user.
+Before the text embedding enhancement, HitRate@5 was **0.521**, meaning that in 52.1% of cases, at least one of the five recommended posts would be selected by the user.
+
+### 6. Model Modernization with Text Embeddings
+To further improve the recommendation accuracy, I introduced **SBERT embeddings** for processing post texts. This method transforms text data into dense vector representations, which helps the model better capture semantic and contextual relationships between posts. As a result, the model became more accurate in identifying user interests and recommending posts that better aligned with their preferences.
+
+After introducing text embeddings, the HitRate@5 improved to **0.582**, meaning that in 58.2% of cases, at least one of the five recommended posts will be selected by the user. This significant improvement demonstrated the effectiveness of adding text embeddings to the data processing pipeline.
 
 ### Result
-Now, each user of the social network receives a personalized feed consisting of posts most suitable for their interests and past activity. This enhances user engagement and improves the quality of their interaction with the platform.
+Now, each user of the social network receives a personalized feed consisting of posts most suitable for their interests and past activity. This enhances user engagement and improves the quality of their interaction with the platform. The updated model with text embeddings significantly improved the recommendation accuracy and optimized the overall performance of the system.
