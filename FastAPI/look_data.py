@@ -15,12 +15,12 @@ except Exception as e:
 
 #df = pd.read_sql('SELECT * FROM ildar_features_lesson_22', con=engine)
 
-df_post = pd.read_csv('post_data3.csv')
+#df_post = pd.read_csv('post_data3.csv')
 #df_user = pd.read_csv('user_data2.csv')
 
 # # Записываем DataFrame в таблицу (с перезаписью, если она уже существует)
 #df_user.to_sql('elina_galimova_user', con=engine, if_exists='replace', index=False)
-df_post.to_sql('elina_galimova_post', con=engine, if_exists='replace', index=False)
+#df_post.to_sql('elina_galimova_post', con=engine, if_exists='replace', index=False)
 # # Считываем данные обратно в DataFrame
 #df_user = pd.read_sql('SELECT * FROM elina_galimova_user', con=engine)
 df_post = pd.read_sql('SELECT * FROM elina_galimova_post', con=engine)

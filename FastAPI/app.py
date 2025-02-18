@@ -77,7 +77,8 @@ def recommended_posts(id: int, time: datetime, limit: int = 5) -> List[PostGet]:
     # Формируем данные для предсказания
     data = posts.join(user_data, how="cross")[
         ["city", "country", "text_y", "topic_y", "most_frequent_word_y",
-         "gender","age", "exp_group","length_text", "max_tfidf",
+         "gender","age", "exp_group", 'emb_0', 'emb_1', 'emb_2', 'emb_3', 'emb_4',
+         "length_text", "max_tfidf",
          "has_numbers", "text_length_more1500", "cnt_actions", "os_iOS", "os_organic"]
     ]
 
